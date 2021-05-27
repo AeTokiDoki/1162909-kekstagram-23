@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Сергей Подшиблов](https://up.htmlacademy.ru/javascript/23/user/1162909).
-* Наставник: `Неизвестно`.
+- Студент: [Сергей Подшиблов](https://up.htmlacademy.ru/javascript/23/user/1162909).
+- Наставник: [Андрей Корейкин](https://htmlacademy.ru/profile/ankormoreankor).
 
 ---
 
