@@ -17,7 +17,7 @@ function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-console.log(getRandomNumber(1, 9));
+getRandomNumber(1, 9);
 
 //Сделал сам.
 
@@ -27,4 +27,4 @@ function checkLengthString(checkString,maxLength) {
   }
 }
 
-console.log(checkLengthString(10,140))
+checkLengthString(10,140);
