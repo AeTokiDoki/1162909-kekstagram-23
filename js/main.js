@@ -18,7 +18,7 @@ getRandomNumber(1, 9);
 //Сделал сам.
 
 function checkLengthString(thisString,maxLength) {
-	if (checkString.length <= maxLength) {
+	if (thisString.length <= maxLength) {
 	  return true;
 	}
  }
