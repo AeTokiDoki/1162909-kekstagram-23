@@ -1,7 +1,5 @@
 //https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 
-//Разобрался и повторил из источника, придумал как функция должна вести себя при до < от.
-
 function getRandomNumber(min, max) {
   if (max <= min ) {
     return -1;
@@ -15,12 +13,12 @@ function getRandomNumber(min, max) {
 
 getRandomNumber(1, 9);
 
-//Сделал сам.
 
 function checkLengthString(thisString,maxLength) {
   if (thisString.length <= maxLength) {
     return true;
   }
+  return false;
 }
 
 checkLengthString('test',140);
