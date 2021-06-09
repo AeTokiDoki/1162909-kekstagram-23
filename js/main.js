@@ -22,3 +22,63 @@ function checkLengthString(thisString,maxLength) {
 }
 
 checkLengthString('test',140);
+
+//module4-task1
+
+//Функции от академии
+
+function getRandomPositiveInteger (a, b) {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
+
+function checkStringLength (string, length) {
+  return string.length <= length;
+}
+
+
+
+
+const MIN_LIKES = 15;
+const MAX_LIKES = 200;
+const AVATAR_COUNT = 6;
+
+const AUTHOR_NAMES = [
+  'Оскар',
+  'Бен',
+  'Влад',
+  'Никита',
+  'Сергей',
+  'Андрей',
+];
+
+const DESCRIPTION_PHOTO = [
+  'Сделал фото этим утром!',
+  'Зацени моего пса!',
+  'Фото на память.',
+  'Я и моя тачка',
+  'Это мы на море',
+  'Закат в Москве',
+];
+
+const DESCRIPTION_MESSAGE =[
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+];
+
+
+const createComment = (index) => {
+  return {
+    id: index,
+    avatar: `img/avatar-${getRandomPositiveInteger(1, AVATAR_COUNT)}.svg`,
+    message: DESCRIPTION_MESSAGE[getRandomPositiveInteger(0,DESCRIPTION_MESSAGE.length-1)],
+    name: AUTHOR_NAMES[getRandomPositiveInteger(0,AUTHOR_NAMES.length-1)],
+    likes: getRandomPositiveInteger(MIN_LIKES, MAX_LIKES),
+  }
+};
