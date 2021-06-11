@@ -27,18 +27,18 @@ checkLengthString('test',140);
 
 //Функции от академии
 
-function getRandomPositiveInteger (a, b) {
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+function getRandomPositiveInteger (min,max) {
+  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
+  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
-};
+}
 
 function checkStringLength (string, length) {
   return string.length <= length;
 }
 
-
+checkStringLength(1,2);
 
 
 const MIN_LIKES = 15;
@@ -73,12 +73,14 @@ const DESCRIPTION_MESSAGE =[
 ];
 
 
-const createComment = (index) => {
-  return {
+const createComment = (index) =>
+  ({
     id: index,
     avatar: `img/avatar-${getRandomPositiveInteger(1, AVATAR_COUNT)}.svg`,
     message: DESCRIPTION_MESSAGE[getRandomPositiveInteger(0,DESCRIPTION_MESSAGE.length-1)],
     name: AUTHOR_NAMES[getRandomPositiveInteger(0,AUTHOR_NAMES.length-1)],
     likes: getRandomPositiveInteger(MIN_LIKES, MAX_LIKES),
-  }
-};
+  });
+
+
+createComment(DESCRIPTION_PHOTO);
