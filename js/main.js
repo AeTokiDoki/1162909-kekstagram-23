@@ -72,15 +72,28 @@ const DESCRIPTION_MESSAGE =[
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
+const ID_ARRAY = new Array;
+for(let counter =25; counter > 0 ; counter--) {
+  ID_ARRAY.push(counter);
+}
 
-const createComment = (index) =>
+const getId = () => {
+  const id = ID_ARRAY[ID_ARRAY.length-1];
+  ID_ARRAY.pop();
+
+  return id;
+};
+
+
+const createComment = () =>
   ({
-    id: index,
+    id: getId(),
     avatar: `img/avatar-${getRandomPositiveInteger(1, AVATAR_COUNT)}.svg`,
     message: DESCRIPTION_MESSAGE[getRandomPositiveInteger(0,DESCRIPTION_MESSAGE.length-1)],
     name: AUTHOR_NAMES[getRandomPositiveInteger(0,AUTHOR_NAMES.length-1)],
     likes: getRandomPositiveInteger(MIN_LIKES, MAX_LIKES),
   });
 
-
 createComment(DESCRIPTION_PHOTO);
+
+
