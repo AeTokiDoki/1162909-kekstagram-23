@@ -4,7 +4,8 @@ export const AVATAR_COUNT = 6;
 export const MIN_ID = 1;
 export const MAX_ID = 25;
 export const IDS_COUNT = 25;
-
+export const MAX_COMMENTS = 15;
+export const MIN_COMMENTS = 15;
 
 export const AUTHOR_NAMES = [
   'Оскар',

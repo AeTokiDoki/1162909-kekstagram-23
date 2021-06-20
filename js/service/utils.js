@@ -56,7 +56,7 @@ export const getRandomElementFromArray = (array) => array[getRandomPositiveInteg
 
 /**
  * Принимает данные функции, массив ids, длину массива. Создаёт пустой массив , запускает процесс создания нового массива на основе текущего.
- * @returns вызывает функцию по id.
+ * @returns возвращает массив значений.
  */
 export const getArrayFromFunctionCall = (func, ids, length) => {
   if (ids.length < length) {

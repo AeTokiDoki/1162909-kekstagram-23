@@ -46,7 +46,7 @@ const createComments = (id) => {
 };
 
 /**
- * Принимает данные параметры, создаёт объект с описанием фотографии.
+ * Принимает id фотографии
  * @returns Объект с описанием фотографии.
  */
 const createPhotoDescription = (id) => ({
@@ -62,7 +62,7 @@ window.checkStringLength = checkStringLength;
 
 
 /**
- * Принимает ID
+ *
  * @returns Возвращает вызов другой функции с параметрами.
  */
 const createPhotoDescriptions = () => getArrayFromFunctionCall(
