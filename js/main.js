@@ -1,99 +1,72 @@
-//https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+import {
+  MIN_LIKES,
+  MAX_LIKES,
+  AVATAR_COUNT,
+  AUTHOR_NAMES,
+  DESCRIPTIONS_PHOTO,
+  DESCRIPTIONS_MESSAGE,
+  getRandomPositiveInteger,
+  checkStringLength,
+  getArrayOfRandomNumbers,
+  MIN_ID,
+  MAX_ID,
+  IDS_COUNT,
+  getRandomElementFromArray,
+  getArrayFromFunctionCall,
+  getArrayNumbersFromId
+} from './service/index.js';
 
-function getRandomNumber(min, max) {
-  if (max <= min ) {
-    return -1;
-  }
-
-  const minNum = Math.ceil(min);
-  const maxNum = Math.floor(max);
-
-  return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
-}
-
-getRandomNumber(1, 9);
-
-
-function checkLengthString(thisString,maxLength) {
-  if (thisString.length <= maxLength) {
-    return true;
-  }
-  return false;
-}
-
-checkLengthString('test',140);
-
-//module4-task1
-
-//Функции от академии
-
-function getRandomPositiveInteger (min,max) {
-  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-}
-
-function checkStringLength (string, length) {
-  return string.length <= length;
-}
-
-checkStringLength(1,2);
+/**
+ * Принимает данные параметры, создаёт объект с комментарием к фотографии.
+ * @returns Объект с комментарием к фотографии.
+ */
+const createComment = (id) => ({
+  id: id,
+  avatar: `img/avatar-${getRandomPositiveInteger(1, AVATAR_COUNT)}.svg`,
+  message: getRandomElementFromArray(DESCRIPTIONS_MESSAGE),
+  name: getRandomElementFromArray(AUTHOR_NAMES),
+});
 
 
-const MIN_LIKES = 15;
-const MAX_LIKES = 200;
-const AVATAR_COUNT = 6;
-
-const AUTHOR_NAMES = [
-  'Оскар',
-  'Бен',
-  'Влад',
-  'Никита',
-  'Сергей',
-  'Андрей',
-];
-
-const DESCRIPTION_PHOTO = [
-  'Сделал фото этим утром!',
-  'Зацени моего пса!',
-  'Фото на память.',
-  'Я и моя тачка',
-  'Это мы на море',
-  'Закат в Москве',
-];
-
-const DESCRIPTION_MESSAGE =[
-  'Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
-];
-
-const ID_ARRAY = new Array;
-for(let counter =25; counter > 0 ; counter--) {
-  ID_ARRAY.push(counter);
-}
-
-const getId = () => {
-  const id = ID_ARRAY[ID_ARRAY.length-1];
-  ID_ARRAY.pop();
-
-  return id;
+/**
+  * Принимает id ,создаёт массив комментариев.
+  * @returns
+  */
+const createComments = (id) => {
+  const length = getRandomPositiveInteger(1, 15);
+  return getArrayFromFunctionCall(
+    createComment,
+    getArrayNumbersFromId(
+      getArrayOfRandomNumbers(MIN_ID, MAX_ID, length), id,
+    ),
+    length,
+  );
 };
 
+/**
+ * Принимает данные параметры, создаёт объект с описанием фотографии.
+ * @returns Объект с описанием фотографии.
+ */
+const createPhotoDescription = (id) => ({
+  id: id,
+  url: `photos/${id}.jpg`,
+  description: getRandomElementFromArray(DESCRIPTIONS_PHOTO),
+  likes: getRandomPositiveInteger(MIN_LIKES, MAX_LIKES),
+  comments: createComments(id),
+});
 
-const createComment = () =>
-  ({
-    id: getId(),
-    avatar: `img/avatar-${getRandomPositiveInteger(1, AVATAR_COUNT)}.svg`,
-    message: DESCRIPTION_MESSAGE[getRandomPositiveInteger(0,DESCRIPTION_MESSAGE.length-1)],
-    name: AUTHOR_NAMES[getRandomPositiveInteger(0,AUTHOR_NAMES.length-1)],
-    likes: getRandomPositiveInteger(MIN_LIKES, MAX_LIKES),
-  });
-
-createComment(DESCRIPTION_PHOTO);
+window.createPhotoDescription = createPhotoDescription;
+window.checkStringLength = checkStringLength;
 
 
+/**
+ * Принимает ID
+ * @returns
+ */
+const createPhotoDescriptions = () => getArrayFromFunctionCall(
+  createPhotoDescription,
+  getArrayOfRandomNumbers(MIN_ID, MAX_ID, IDS_COUNT),
+  IDS_COUNT,
+);
+
+window.createPhotoDescriptions = createPhotoDescriptions;
