@@ -13,7 +13,9 @@ import {
   IDS_COUNT,
   getRandomElementFromArray,
   getArrayFromFunctionCall,
-  getArrayNumbersFromId
+  getArrayNumbersFromId,
+  MAX_COMMENTS,
+  MIN_COMMENTS
 } from './service/index.js';
 
 /**
@@ -29,11 +31,11 @@ const createComment = (id) => ({
 
 
 /**
-  * Принимает id ,создаёт массив комментариев.
-  * @returns
+  * Принимает id .
+  * @returns создаёт массив комментариев.
   */
 const createComments = (id) => {
-  const length = getRandomPositiveInteger(1, 15);
+  const length = getRandomPositiveInteger(MIN_COMMENTS, MAX_COMMENTS);
   return getArrayFromFunctionCall(
     createComment,
     getArrayNumbersFromId(
@@ -61,7 +63,7 @@ window.checkStringLength = checkStringLength;
 
 /**
  * Принимает ID
- * @returns
+ * @returns Возвращает вызов другой функции с параметрами.
  */
 const createPhotoDescriptions = () => getArrayFromFunctionCall(
   createPhotoDescription,

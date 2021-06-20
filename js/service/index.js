@@ -7,7 +7,9 @@ import {
   DESCRIPTIONS_MESSAGE,
   MIN_ID,
   MAX_ID,
-  IDS_COUNT
+  IDS_COUNT,
+  MAX_COMMENTS,
+  MIN_COMMENTS
 } from './constants.js';
 
 import {
@@ -35,5 +37,7 @@ export {
   checkStringLength,
   MIN_ID,
   MAX_ID,
+  MAX_COMMENTS,
+  MIN_COMMENTS,
   getRandomElementFromArray
 };

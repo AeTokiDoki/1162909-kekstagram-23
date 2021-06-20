@@ -44,13 +44,13 @@ export const getArrayOfRandomNumbers = (min, max, length) => {
 
 /**
  * Принимает id и array
- * @returns Уникальный id
+ * @returns  массив уникальных id, с учётом id базового элемента.
  */
 export const getArrayNumbersFromId = (array, id) => array.map((number) => id * 100 + number);
 
 /**
  * Принимает массив.
- * @returns случайное число из массива.
+ * @returns Случайный элемент из массива.
  */
 export const getRandomElementFromArray = (array) => array[getRandomPositiveInteger(1, array.length - 1)];
 
