@@ -66,3 +66,15 @@ export const getArrayFromFunctionCall = (func, ids, length) => {
     (item, index) => func(ids[index]),
   );
 };
+
+export const renderElement = (root, node) => root.appendChild(node);
+
+export const createNodes = (nodes) => {
+  const fragment = document.createDocumentFragment();
+
+  nodes.forEach((node) => {
+    fragment.appendChild(node);
+  });
+
+  return fragment;
+};
