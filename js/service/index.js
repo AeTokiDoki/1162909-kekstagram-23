@@ -17,8 +17,10 @@ import {
   checkStringLength,
   getArrayOfRandomNumbers,
   getRandomElementFromArray,
+  renderElement,
   getArrayFromFunctionCall,
-  getArrayNumbersFromId
+  getArrayNumbersFromId,
+  createNodes
 } from './utils.js';
 
 
@@ -30,6 +32,7 @@ export {
   MIN_LIKES,
   MAX_LIKES,
   AVATAR_COUNT,
+  renderElement,
   AUTHOR_NAMES,
   DESCRIPTIONS_PHOTO,
   DESCRIPTIONS_MESSAGE,
@@ -39,5 +42,6 @@ export {
   MAX_ID,
   MAX_COMMENTS,
   MIN_COMMENTS,
-  getRandomElementFromArray
+  getRandomElementFromArray,
+  createNodes
 };
