@@ -67,9 +67,18 @@ export const getArrayFromFunctionCall = (func, ids, length) => {
   );
 };
 
+/**
+ * Принимает функцию и  узел (pictures)
+ * @returns Генерирует фрагмент с картинками
+ */
 export const renderElement = (root, node) => root.appendChild(node);
 
-export const createNodes = (nodes) => {
+
+/**
+ * Принимает массив nodes
+ * @returns создаёт фрагмент с nodes
+ */
+export const createNodesFragment = (nodes) => {
   const fragment = document.createDocumentFragment();
 
   nodes.forEach((node) => {

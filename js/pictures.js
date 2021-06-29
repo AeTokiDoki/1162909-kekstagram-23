@@ -4,13 +4,17 @@ import {
 
 import {
   renderElement,
-  createNodes
+  createNodesFragment
 } from './service/index.js';
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const photoDescriptions = createPhotoDescriptions();
 
+/**
+ * Принимает объект, клонирует узел (pictureElement)
+ * @returns узел (pictureElement)
+ */
 const createMiniature = ({ url, likes, comments }) => {
   const pictureElement = pictureTemplate.cloneNode(true);
   pictureElement.querySelector('.picture__img').src = url;
@@ -20,13 +24,18 @@ const createMiniature = ({ url, likes, comments }) => {
   return pictureElement;
 };
 
+
+/**
+ * Принимает функцию
+ * @returns массив узлов(node)
+ */
 const createMiniatures = () => photoDescriptions.map(
   (description) => createMiniature(description),
 );
 
 renderElement(
   pictures,
-  createNodes(
+  createNodesFragment(
     createMiniatures(),
   ),
 );

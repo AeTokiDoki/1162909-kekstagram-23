@@ -1,4 +1,9 @@
 import {
+  MIN_ID,
+  MAX_ID,
+  IDS_COUNT,
+  MAX_COMMENTS,
+  MIN_COMMENTS,
   MIN_LIKES,
   MAX_LIKES,
   AVATAR_COUNT,
@@ -8,14 +13,9 @@ import {
   getRandomPositiveInteger,
   checkStringLength,
   getArrayOfRandomNumbers,
-  MIN_ID,
-  MAX_ID,
-  IDS_COUNT,
   getRandomElementFromArray,
   getArrayFromFunctionCall,
-  getArrayNumbersFromId,
-  MAX_COMMENTS,
-  MIN_COMMENTS
+  getArrayNumbersFromId
 } from './service/index.js';
 
 /**
