@@ -15,35 +15,48 @@ const bigPictureCancelButton = bigPictureModal.querySelector('.big-picture__canc
 
 const Pictures = document.querySelectorAll('.picture');
 
+
 // /**
-//  * Закрывает модальное окно
+//  * Функция закрытия модального окна
 //  */
 const closeBigPictureModal = () => {
   bigPictureModal.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  bigPictureCancelButton.addEventListener('click', closeBigPictureModal);
-
 };
 
 // /**
-//  * Открывает модальное окно
+//  * Функция открытия модального окна
 //  */
 const openBigPictureModal = () => {
   bigPictureModal.classList.remove('hidden');
   document.body.classList.add('modal-open');
   commentsCounter.classList.add('hidden');
   commentsLoader.classList.add('hidden');
+};
 
-  bigPictureCancelButton.removeEventListener('click', closeBigPictureModal);
+
+const showBigPicture = ({ url, likes, comments, description }) => {
   bigPictureImage.setAttribute('src', url);
   bigPictureLikes.textContent = likes;
   bigPictureComments.textContent = comments.length;
   bigPictureDescription.textContent = description;
   commentsContainer.innerHTML = '';
-
-
 };
 
-Pictures.addEventListener('click', () => {
+/**
+ * Перебирает массив, навешивает клик.
+ * Вызывает функцию открытия модального окна.
+ */
+Pictures.forEach((value, idx) => {
+  value.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    openBigPictureModal();
+  });
+});
 
+// showBigPicture();
+
+bigPictureCancelButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  closeBigPictureModal();
 });
