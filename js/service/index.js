@@ -20,7 +20,8 @@ import {
   renderElement,
   getArrayFromFunctionCall,
   getArrayNumbersFromId,
-  createNodesFragment
+  createNodesFragment,
+  onEscButton
 } from './utils.js';
 
 
@@ -43,5 +44,6 @@ export {
   createNodesFragment,
   renderElement,
   getRandomPositiveInteger,
-  checkStringLength
+  checkStringLength,
+  onEscButton
 };

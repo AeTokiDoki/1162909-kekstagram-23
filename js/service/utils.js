@@ -87,3 +87,14 @@ export const createNodesFragment = (nodes) => {
 
   return fragment;
 };
+
+
+/**
+ *
+ * @returns
+ */
+export const onEscButton = (func) => (evt) => {
+  if (evt.keyCode === 27) {
+    func();
+  }
+};
