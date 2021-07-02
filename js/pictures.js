@@ -9,7 +9,7 @@ import {
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const photoDescriptions = createPhotoDescriptions();
+export const postsData = createPhotoDescriptions();
 
 /**
  * Принимает объект, клонирует узел (pictureElement)
@@ -29,7 +29,7 @@ const createMiniature = ({ url, likes, comments }) => {
  * Принимает функцию
  * @returns массив узлов(node)
  */
-const createMiniatures = () => photoDescriptions.map(
+const createMiniatures = () => postsData.map(
   (description) => createMiniature(description),
 );
 

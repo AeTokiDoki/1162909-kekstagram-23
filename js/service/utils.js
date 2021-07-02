@@ -90,7 +90,7 @@ export const createNodesFragment = (nodes) => {
 
 
 /**
- *
+ * Закрытие на esc
  * @returns
  */
 export const onEscButton = (func) => (evt) => {

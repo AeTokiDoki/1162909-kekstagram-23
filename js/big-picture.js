@@ -1,7 +1,7 @@
+
 import {
-  createNodesFragment,
-  renderElement
-} from './service/index.js';
+  postsData
+} from './pictures.js';
 
 const bigPictureModal = document.querySelector('.big-picture');
 const bigPictureImage = bigPictureModal.querySelector('.big-picture__img img');
@@ -13,8 +13,14 @@ const commentsCounter = bigPictureModal.querySelector('.social__comment-count');
 const commentsLoader = bigPictureModal.querySelector('.comments-loader');
 const bigPictureCancelButton = bigPictureModal.querySelector('.big-picture__cancel');
 
-const Pictures = document.querySelectorAll('.picture');
+const posts = document.querySelectorAll('.picture');
 
+
+const onEscButton = (evt) => {
+  if (evt.keyCode === 27) {
+    closeBigPictureModal();
+  }
+};
 
 // /**
 //  * Функция закрытия модального окна
@@ -22,7 +28,9 @@ const Pictures = document.querySelectorAll('.picture');
 const closeBigPictureModal = () => {
   bigPictureModal.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onEscButton);
 };
+
 
 // /**
 //  * Функция открытия модального окна
@@ -32,10 +40,15 @@ const openBigPictureModal = () => {
   document.body.classList.add('modal-open');
   commentsCounter.classList.add('hidden');
   commentsLoader.classList.add('hidden');
+
+  document.addEventListener('keydown', onEscButton);
 };
 
 
-const showBigPicture = ({ url, likes, comments, description }) => {
+/**
+ * Наполняет модальное окно
+ */
+const fillModal = ({ url, likes, comments, description }) => {
   bigPictureImage.setAttribute('src', url);
   bigPictureLikes.textContent = likes;
   bigPictureComments.textContent = comments.length;
@@ -47,15 +60,18 @@ const showBigPicture = ({ url, likes, comments, description }) => {
  * Перебирает массив, навешивает клик.
  * Вызывает функцию открытия модального окна.
  */
-Pictures.forEach((value, idx) => {
-  value.addEventListener('click', (evt) => {
+posts.forEach((element, idx) => {
+  element.addEventListener('click', (evt) => {
     evt.preventDefault();
+    fillModal(postsData[idx]);
     openBigPictureModal();
   });
 });
 
-// showBigPicture();
 
+/**
+ * Закрывает модалку по клику на крестик
+ */
 bigPictureCancelButton.addEventListener('click', (evt) => {
   evt.preventDefault();
   closeBigPictureModal();
