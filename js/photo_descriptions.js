@@ -11,7 +11,6 @@ import {
   DESCRIPTIONS_PHOTO,
   DESCRIPTIONS_MESSAGE,
   getRandomPositiveInteger,
-  checkStringLength,
   getArrayOfRandomNumbers,
   getRandomElementFromArray,
   getArrayFromFunctionCall,
@@ -57,10 +56,6 @@ const createPhotoDescription = (id) => ({
   comments: createComments(id),
 });
 
-window.createPhotoDescription = createPhotoDescription;
-window.checkStringLength = checkStringLength;
-
-
 /**
  *
  * @returns Возвращает вызов другой функции с параметрами.
@@ -70,5 +65,3 @@ export const createPhotoDescriptions = () => getArrayFromFunctionCall(
   getArrayOfRandomNumbers(MIN_ID, MAX_ID, IDS_COUNT),
   IDS_COUNT,
 );
-
-window.createPhotoDescriptions = createPhotoDescriptions;

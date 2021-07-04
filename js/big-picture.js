@@ -1,8 +1,15 @@
-
 import {
   postsData
 } from './pictures.js';
 
+import {
+  createOnEscKeyDown,
+  toggleHidden,
+  createOnClickButton,
+  renderStringNodes
+} from './service/index.js';
+
+const pictures = document.querySelector('.pictures');
 const bigPictureModal = document.querySelector('.big-picture');
 const bigPictureImage = bigPictureModal.querySelector('.big-picture__img img');
 const bigPictureLikes = bigPictureModal.querySelector('.likes-count');
@@ -13,66 +20,85 @@ const commentsCounter = bigPictureModal.querySelector('.social__comment-count');
 const commentsLoader = bigPictureModal.querySelector('.comments-loader');
 const bigPictureCancelButton = bigPictureModal.querySelector('.big-picture__cancel');
 
-const posts = document.querySelectorAll('.picture');
 
+let onEscKeyDown; // eslint-disable-line
+let onCloseButtonClick; // eslint-disable-line
 
-const onEscButton = (evt) => {
-  if (evt.keyCode === 27) {
-    closeBigPictureModal();
-  }
-};
-
-// /**
-//  * Функция закрытия модального окна
-//  */
+/**
+ * Функция закрытия модального окна
+ */
 const closeBigPictureModal = () => {
-  bigPictureModal.classList.add('hidden');
+  toggleHidden(bigPictureModal);
   document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onEscButton);
+  document.removeEventListener('keydown', onEscKeyDown);
+  bigPictureCancelButton.removeEventListener('click', onCloseButtonClick);
 };
 
 
-// /**
-//  * Функция открытия модального окна
-//  */
+/**
+ * Функция открытия модального окна
+ */
 const openBigPictureModal = () => {
-  bigPictureModal.classList.remove('hidden');
+  toggleHidden(bigPictureModal);
   document.body.classList.add('modal-open');
   commentsCounter.classList.add('hidden');
   commentsLoader.classList.add('hidden');
 
-  document.addEventListener('keydown', onEscButton);
+  document.addEventListener('keydown', onEscKeyDown);
+  bigPictureCancelButton.addEventListener('click', onCloseButtonClick);
 };
-
 
 /**
  * Наполняет модальное окно
  */
 const fillModal = ({ url, likes, comments, description }) => {
-  bigPictureImage.setAttribute('src', url);
+  bigPictureImage.src = url;
   bigPictureLikes.textContent = likes;
   bigPictureComments.textContent = comments.length;
   bigPictureDescription.textContent = description;
-  commentsContainer.innerHTML = '';
 };
 
 /**
- * Перебирает массив, навешивает клик.
- * Вызывает функцию открытия модального окна.
+ * Создаёт строку с разметкой, подставляет в него объект.
  */
-posts.forEach((element, idx) => {
-  element.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    fillModal(postsData[idx]);
-    openBigPictureModal();
-  });
-});
+const createSocialComment = ({ avatar, name, message }) => `
+  <li class="social__comment">
+    <img
+      class="social__picture"
+      src="${avatar}"
+      alt="${name}"
+width = "35" height = "35" >
+  <p class="social__text">${message}</p>
+</li > `;
 
 
 /**
- * Закрывает модалку по клику на крестик
+ * создаёт массив объектов (строк)
  */
-bigPictureCancelButton.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  closeBigPictureModal();
-});
+const createSocialComments = (comments) => comments.map((comment) => createSocialComment(comment));
+
+
+/**
+ * вызывает по клику
+ */
+const onPictureClick = (evt) => {
+  const target = evt.target;
+
+  if (target.classList.contains('picture__img')) {
+    const post = postsData.find((data) => String(data.id) === target.dataset.id);
+    evt.preventDefault();
+    fillModal(post);
+    openBigPictureModal();
+    renderStringNodes(
+      commentsContainer,
+      createSocialComments(post.comments).join(''),
+    );
+  }
+};
+
+
+pictures.addEventListener('click', onPictureClick);
+
+
+onEscKeyDown = createOnEscKeyDown(closeBigPictureModal);
+onCloseButtonClick = createOnClickButton(closeBigPictureModal);

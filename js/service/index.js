@@ -21,8 +21,14 @@ import {
   getArrayFromFunctionCall,
   getArrayNumbersFromId,
   createNodesFragment,
-  onEscButton
+  renderStringNodes
 } from './utils.js';
+
+import {
+  createOnEscKeyDown,
+  toggleHidden,
+  createOnClickButton
+} from './events-handlers.js';
 
 
 export {
@@ -45,5 +51,8 @@ export {
   renderElement,
   getRandomPositiveInteger,
   checkStringLength,
-  onEscButton
+  createOnEscKeyDown,
+  toggleHidden,
+  createOnClickButton,
+  renderStringNodes
 };

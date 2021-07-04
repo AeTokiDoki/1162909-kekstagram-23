@@ -68,11 +68,21 @@ export const getArrayFromFunctionCall = (func, ids, length) => {
 };
 
 /**
- * Принимает функцию и  узел (pictures)
- * @returns Генерирует фрагмент с картинками
+ * Принимает node и  узел
+ * @returns Добавляет ноду в узел
  */
 export const renderElement = (root, node) => root.appendChild(node);
 
+/**
+ * Вставляет комментарии
+ */
+export const renderStringNodes = (root, nodesByString) => {
+  root.textContent = '';
+  root.insertAdjacentHTML(
+    'beforeend',
+    nodesByString,
+  );
+};
 
 /**
  * Принимает массив nodes
@@ -88,13 +98,3 @@ export const createNodesFragment = (nodes) => {
   return fragment;
 };
 
-
-/**
- * Закрытие на esc
- * @returns
- */
-export const onEscButton = (func) => (evt) => {
-  if (evt.keyCode === 27) {
-    func();
-  }
-};
