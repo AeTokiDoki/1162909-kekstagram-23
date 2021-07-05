@@ -74,7 +74,8 @@ export const getArrayFromFunctionCall = (func, ids, length) => {
 export const renderElement = (root, node) => root.appendChild(node);
 
 /**
- * Вставляет комментарии
+ *Принимает node и узел
+ *Сначала очищает, затем вставляет полученные узлы (nodes) в DOM .
  */
 export const renderStringNodes = (root, nodesByString) => {
   root.textContent = '';

@@ -1,6 +1,5 @@
 /**
  * Закрытие на esc
- * @returns
  */
 export const createOnEscKeyDown = (eventFunc) => (evt) => {
   if (evt.keyCode === 27) {

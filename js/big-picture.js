@@ -59,7 +59,7 @@ const fillModal = ({ url, likes, comments, description }) => {
 };
 
 /**
- * Создаёт строку с разметкой, подставляет в него объект.
+ * Возвращает фрагмент разметки строкой с проставленными значениями из объекта, принимаемого в качестве аргумента.
  */
 const createSocialComment = ({ avatar, name, message }) => `
   <li class="social__comment">
@@ -73,13 +73,13 @@ width = "35" height = "35" >
 
 
 /**
- * создаёт массив объектов (строк)
+ * Создаёт массив комментариев.
  */
 const createSocialComments = (comments) => comments.map((comment) => createSocialComment(comment));
 
 
 /**
- * вызывает по клику
+ * Вызывает по клику модальное окно с постом.
  */
 const onPictureClick = (evt) => {
   const target = evt.target;

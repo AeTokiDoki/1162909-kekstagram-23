@@ -27,8 +27,8 @@ const createMiniature = ({ url, likes, comments, id }) => {
 
 
 /**
- * Принимает функцию
- * @returns массив узлов(node)
+ *
+ * @returns массив миниатюр вызовом функции createMiniature.
  */
 const createMiniatures = () => postsData.map(
   (description) => createMiniature(description),
