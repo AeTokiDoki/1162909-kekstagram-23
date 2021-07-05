@@ -4,29 +4,39 @@ import {
 
 import {
   renderElement,
-  createNodes
+  createNodesFragment
 } from './service/index.js';
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const photoDescriptions = createPhotoDescriptions();
+export const postsData = createPhotoDescriptions();
 
-const createMiniature = ({ url, likes, comments }) => {
+/**
+ * Принимает объект, клонирует узел (pictureElement)
+ * @returns узел (pictureElement)
+ */
+const createMiniature = ({ url, likes, comments, id }) => {
   const pictureElement = pictureTemplate.cloneNode(true);
   pictureElement.querySelector('.picture__img').src = url;
+  pictureElement.querySelector('.picture__img').dataset.id = id;
   pictureElement.querySelector('.picture__comments').textContent = comments ? comments.length : 0;
   pictureElement.querySelector('.picture__likes').textContent = likes;
 
   return pictureElement;
 };
 
-const createMiniatures = () => photoDescriptions.map(
+
+/**
+ *
+ * @returns массив миниатюр вызовом функции createMiniature.
+ */
+const createMiniatures = () => postsData.map(
   (description) => createMiniature(description),
 );
 
 renderElement(
   pictures,
-  createNodes(
+  createNodesFragment(
     createMiniatures(),
   ),
 );

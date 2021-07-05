@@ -67,9 +67,29 @@ export const getArrayFromFunctionCall = (func, ids, length) => {
   );
 };
 
+/**
+ * Принимает node и  узел
+ * @returns Добавляет ноду в узел
+ */
 export const renderElement = (root, node) => root.appendChild(node);
 
-export const createNodes = (nodes) => {
+/**
+ *Принимает node и узел
+ *Сначала очищает, затем вставляет полученные узлы (nodes) в DOM .
+ */
+export const renderStringNodes = (root, nodesByString) => {
+  root.textContent = '';
+  root.insertAdjacentHTML(
+    'beforeend',
+    nodesByString,
+  );
+};
+
+/**
+ * Принимает массив nodes
+ * @returns создаёт фрагмент с nodes
+ */
+export const createNodesFragment = (nodes) => {
   const fragment = document.createDocumentFragment();
 
   nodes.forEach((node) => {
@@ -78,3 +98,4 @@ export const createNodes = (nodes) => {
 
   return fragment;
 };
+

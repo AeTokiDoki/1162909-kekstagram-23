@@ -1,4 +1,9 @@
 import {
+  MIN_ID,
+  MAX_ID,
+  IDS_COUNT,
+  MAX_COMMENTS,
+  MIN_COMMENTS,
   MIN_LIKES,
   MAX_LIKES,
   AVATAR_COUNT,
@@ -6,16 +11,10 @@ import {
   DESCRIPTIONS_PHOTO,
   DESCRIPTIONS_MESSAGE,
   getRandomPositiveInteger,
-  checkStringLength,
   getArrayOfRandomNumbers,
-  MIN_ID,
-  MAX_ID,
-  IDS_COUNT,
   getRandomElementFromArray,
   getArrayFromFunctionCall,
-  getArrayNumbersFromId,
-  MAX_COMMENTS,
-  MIN_COMMENTS
+  getArrayNumbersFromId
 } from './service/index.js';
 
 /**
@@ -57,10 +56,6 @@ const createPhotoDescription = (id) => ({
   comments: createComments(id),
 });
 
-window.createPhotoDescription = createPhotoDescription;
-window.checkStringLength = checkStringLength;
-
-
 /**
  *
  * @returns Возвращает вызов другой функции с параметрами.
@@ -70,5 +65,3 @@ export const createPhotoDescriptions = () => getArrayFromFunctionCall(
   getArrayOfRandomNumbers(MIN_ID, MAX_ID, IDS_COUNT),
   IDS_COUNT,
 );
-
-window.createPhotoDescriptions = createPhotoDescriptions;

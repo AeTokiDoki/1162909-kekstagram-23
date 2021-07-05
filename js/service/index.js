@@ -20,28 +20,39 @@ import {
   renderElement,
   getArrayFromFunctionCall,
   getArrayNumbersFromId,
-  createNodes
+  createNodesFragment,
+  renderStringNodes
 } from './utils.js';
+
+import {
+  createOnEscKeyDown,
+  toggleHidden,
+  createOnClickButton
+} from './events-handlers.js';
 
 
 export {
-  getArrayNumbersFromId,
-  getArrayFromFunctionCall,
-  getArrayOfRandomNumbers,
-  IDS_COUNT,
-  MIN_LIKES,
-  MAX_LIKES,
-  AVATAR_COUNT,
-  renderElement,
-  AUTHOR_NAMES,
-  DESCRIPTIONS_PHOTO,
-  DESCRIPTIONS_MESSAGE,
-  getRandomPositiveInteger,
-  checkStringLength,
   MIN_ID,
   MAX_ID,
   MAX_COMMENTS,
   MIN_COMMENTS,
+  IDS_COUNT,
+  MIN_LIKES,
+  MAX_LIKES,
+  AVATAR_COUNT,
+  AUTHOR_NAMES,
+  DESCRIPTIONS_PHOTO,
+  DESCRIPTIONS_MESSAGE,
+  getArrayNumbersFromId,
+  getArrayFromFunctionCall,
+  getArrayOfRandomNumbers,
   getRandomElementFromArray,
-  createNodes
+  createNodesFragment,
+  renderElement,
+  getRandomPositiveInteger,
+  checkStringLength,
+  createOnEscKeyDown,
+  toggleHidden,
+  createOnClickButton,
+  renderStringNodes
 };
