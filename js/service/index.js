@@ -5,11 +5,13 @@ import {
   AUTHOR_NAMES,
   DESCRIPTIONS_PHOTO,
   DESCRIPTIONS_MESSAGE,
+  MAX_LENGTH_COMMENT,
   MIN_ID,
   MAX_ID,
   IDS_COUNT,
   MAX_COMMENTS,
-  MIN_COMMENTS
+  MIN_COMMENTS,
+  ErrorMessages
 } from './constants.js';
 
 import {
@@ -41,8 +43,10 @@ export {
   MAX_LIKES,
   AVATAR_COUNT,
   AUTHOR_NAMES,
+  ErrorMessages,
   DESCRIPTIONS_PHOTO,
   DESCRIPTIONS_MESSAGE,
+  MAX_LENGTH_COMMENT,
   getArrayNumbersFromId,
   getArrayFromFunctionCall,
   getArrayOfRandomNumbers,
