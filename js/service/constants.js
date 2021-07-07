@@ -6,6 +6,7 @@ export const MAX_ID = 25;
 export const IDS_COUNT = 25;
 export const MAX_COMMENTS = 15;
 export const MIN_COMMENTS = 15;
+export const MAX_LENGTH_COMMENT = 140;
 
 export const AUTHOR_NAMES = [
   'Оскар',
@@ -33,3 +34,10 @@ export const DESCRIPTIONS_MESSAGE = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
+
+export const ErrorMessages = {
+  HASHTAG_SUM: 'Нельзя указать больше 5 хэш-тегов',
+  HASHTAG_REPEAT: 'Один и тот же хэш-тег не может быть использован дважды',
+  HASHTAG_TEMPLATE: 'Хэштеги не соответствуют требованиям. Хэштег должен начинаться с знака #, не может содержать пробелы, спецсимволы, символы пунктуации, эмодзи',
+  COMMENT_LENGTH: 'Длинна комментария не должна быть больше 140 символов',
+};
