@@ -12,7 +12,7 @@ const body = document.querySelector('.body');
 const uploadCancel = document.querySelector('#upload-cancel');
 const textHashtags = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
-const re = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
+const regularExpression = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
 
 
 /**
@@ -44,73 +44,68 @@ const onCloseModalEsc = (evt) => {
 /**
  * Открывает модальное окно
  */
-const openModals = () => {
-  uploadFile.addEventListener('change', () => {
-    uploadOverlay.classList.remove('hidden');
-    body.classList.add('modal-open');
-    body.addEventListener('keydown', onCloseModalEsc);
-  });
+const openModal = () => {
+  uploadOverlay.classList.remove('hidden');
+  body.classList.add('modal-open');
+  body.addEventListener('keydown', onCloseModalEsc);
 };
 
-openModals();
+
+uploadFile.addEventListener('change', openModal);
 
 
 /**
  * закрытие на крестик
  */
-uploadCancel.addEventListener('click', () => {
-  closeModal();
-});
+uploadCancel.addEventListener('click', closeModal);
 
 /**
  *
  * Валидация хэштегов. Выводит окно с ошибкой.
  */
 const renderValidationMessages = () => {
-  textHashtags.addEventListener('input', () => {
-    const hashtags = textHashtags.value.trim().split(' ').filter(Boolean);
 
-    if (hashtags.length > 5) {
-      textHashtags.setCustomValidity(ErrorMessages.HASHTAG_SUM);
-    } else {
-      if (hashtags.length > 0) {
-        hashtags.forEach((hashtag) => {
-          if (re.test(hashtag)) {
-            const repeats = hashtags.filter((repeat) => repeat.toLowerCase() === hashtag.toLowerCase());
-            if (repeats.length >= 2) {
-              textHashtags.setCustomValidity(ErrorMessages.HASHTAG_REPEAT);
-            } else {
-              textHashtags.setCustomValidity('');
-            }
+  const hashtags = textHashtags.value.trim().split(' ').filter(Boolean);
+
+  if (hashtags.length > 5) {
+    textHashtags.setCustomValidity(ErrorMessages.HASHTAG_SUM);
+  } else {
+    if (hashtags.length > 0) {
+      hashtags.forEach((hashtag) => {
+        if (regularExpression.test(hashtag)) {
+          const repeats = hashtags.filter((repeat) => repeat.toLowerCase() === hashtag.toLowerCase());
+          if (repeats.length >= 2) {
+            textHashtags.setCustomValidity(ErrorMessages.HASHTAG_REPEAT);
           } else {
-            textHashtags.setCustomValidity(ErrorMessages.HASHTAG_TEMPLATE);
+            textHashtags.setCustomValidity('');
           }
-        });
-      } else {
-        textHashtags.setCustomValidity('');
-      }
-
+        } else {
+          textHashtags.setCustomValidity(ErrorMessages.HASHTAG_TEMPLATE);
+        }
+      });
+    } else {
+      textHashtags.setCustomValidity('');
     }
 
-    textHashtags.reportValidity();
-  });
-};
+  }
 
-renderValidationMessages();
+  textHashtags.reportValidity();
+};
 
 
 /**
- * Вызывает функцию проверки длинны комментария
+ * проверка длинны комментария
  */
 const checkComments = () => {
-  textDescription.addEventListener('input', () => {
-    if (checkStringLength(textDescription.value, MAX_LENGTH_COMMENT) === false) {
-      textDescription.setCustomValidity((ErrorMessages.COMMENT_LENGTH));
-    } else {
-      textDescription.setCustomValidity('');
-    }
-    textDescription.reportValidity();
-  });
+  if (checkStringLength(textDescription.value, MAX_LENGTH_COMMENT) === false) {
+    textDescription.setCustomValidity((ErrorMessages.COMMENT_LENGTH));
+  } else {
+    textDescription.setCustomValidity('');
+  }
+  textDescription.reportValidity();
 };
 
-checkComments();
+textDescription.addEventListener('focus', checkComments);
+textDescription.addEventListener('blur', checkComments);
+textHashtags.addEventListener('focus', renderValidationMessages);
+textHashtags.removeEventListener('blur', renderValidationMessages);
