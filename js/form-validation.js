@@ -3,7 +3,8 @@ import {
   MAX_LENGTH_COMMENT,
   checkStringLength,
   createOnEscKeyDown,
-  ErrorMessages
+  ErrorMessages,
+  createOnClickButton
 } from './service/index.js';
 
 const body = document.body;
@@ -17,11 +18,12 @@ const textDescription = fieldsContainer.querySelector('.text__description');
 const regularExpression = /^#[\w]{1,19}$/;
 
 let onCloseModalEsc; // eslint-disable-line
+let onCloseModalClick; // eslint-disable-line
 
 /**
  * Добавляет/убирает классы для закрытия модального окна
  */
-const oncloseModal = () => {
+const onCloseModal = () => {
   if (document.activeElement.parentElement === fieldsContainer) {
     // прерывает выполнение функции
     return;
@@ -33,7 +35,7 @@ const oncloseModal = () => {
   textHashtags.value = '';
   textDescription.value = '';
 
-  uploadCancel.removeEventListener('click', oncloseModal);
+  uploadCancel.removeEventListener('click', onCloseModalClick);
   body.removeEventListener('keydown', onCloseModalEsc);
 
 
@@ -46,7 +48,7 @@ const openModal = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   body.addEventListener('keydown', onCloseModalEsc);
-  uploadCancel.addEventListener('click', oncloseModal);
+  uploadCancel.addEventListener('click', onCloseModalClick);
 };
 
 /**
@@ -93,7 +95,8 @@ const checkComments = () => {
   textDescription.reportValidity();
 };
 
-onCloseModalEsc = createOnEscKeyDown(oncloseModal);
+onCloseModalEsc = createOnEscKeyDown(onCloseModal);
+onCloseModalClick = createOnClickButton(onCloseModal);
 
 uploadFile.addEventListener('change', openModal);
 
