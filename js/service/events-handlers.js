@@ -1,5 +1,5 @@
 /**
- * Закрытие на esc
+ * Фабрика, создающая функцию закрытия по нажатию Esc
  */
 export const createOnEscKeyDown = (eventFunc) => (evt) => {
   if (evt.keyCode === 27) {
