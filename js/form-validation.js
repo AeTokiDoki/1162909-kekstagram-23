@@ -15,6 +15,8 @@ const fieldsContainer = form.querySelector('.img-upload__text');
 const uploadCancel = form.querySelector('#upload-cancel');
 const textHashtags = fieldsContainer.querySelector('.text__hashtags');
 const textDescription = fieldsContainer.querySelector('.text__description');
+const imagePreview = form.querySelector('.img-upload__preview');
+const sliderWrapper = form.querySelector('.img-upload__effect-level');
 const regularExpression = /^#[\w]{1,19}$/;
 
 let onCloseModalEsc; // eslint-disable-line
@@ -34,11 +36,10 @@ const onCloseModal = () => {
   uploadFile.value = '';
   textHashtags.value = '';
   textDescription.value = '';
+  imagePreview.style.filter = 'none';
 
   uploadCancel.removeEventListener('click', onCloseModalClick);
   body.removeEventListener('keydown', onCloseModalEsc);
-
-
 };
 
 /**
@@ -47,6 +48,7 @@ const onCloseModal = () => {
 const openModal = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
+  sliderWrapper.classList.add('visually-hidden');
   body.addEventListener('keydown', onCloseModalEsc);
   uploadCancel.addEventListener('click', onCloseModalClick);
 };

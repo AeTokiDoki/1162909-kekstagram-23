@@ -9,6 +9,26 @@ export const MIN_COMMENTS = 15;
 export const MAX_LENGTH_COMMENT = 140;
 export const MAX_COMMENTS_TO_SHOW = 5;
 
+export const CHROME_MIN_VALUE = 0;
+export const CHROME_MAX_VALUE = 1;
+export const CHROME_STEP = 0.1;
+
+export const SEPIA_MIN_VALUE = 0;
+export const SEPIA_MAX_VALUE = 1;
+export const SEPIA_STEP = 0.1;
+
+export const MARVIN_MIN_VALUE = 1;
+export const MARVIN_MAX_VALUE = 100;
+export const MARVIN_STEP = 1;
+
+export const PHOBOS_MIN_VALUE = 0;
+export const PHOBOS_MAX_VALUE = 3;
+export const PHOBOS_STEP = 0.1;
+
+export const HEAT_MIN_VALUE = 1;
+export const HEAT_MAX_VALUE = 3;
+export const HEAT_STEP = 0.1;
+
 export const AUTHOR_NAMES = [
   'Оскар',
   'Бен',
