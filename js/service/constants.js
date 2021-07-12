@@ -7,6 +7,7 @@ export const IDS_COUNT = 25;
 export const MAX_COMMENTS = 15;
 export const MIN_COMMENTS = 15;
 export const MAX_LENGTH_COMMENT = 140;
+export const MAX_COMMENTS_TO_SHOW = 5;
 
 export const AUTHOR_NAMES = [
   'Оскар',

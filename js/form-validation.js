@@ -3,42 +3,42 @@ import {
   MAX_LENGTH_COMMENT,
   checkStringLength,
   createOnEscKeyDown,
-  ErrorMessages
+  ErrorMessages,
+  createOnClickButton
 } from './service/index.js';
 
-const uploadFile = document.querySelector('#upload-file');
-const uploadOverlay = document.querySelector('.img-upload__overlay');
-const body = document.querySelector('.body');
-const uploadCancel = document.querySelector('#upload-cancel');
-const textHashtags = document.querySelector('.text__hashtags');
-const textDescription = document.querySelector('.text__description');
-const regularExpression = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
+const body = document.body;
+const form = body.querySelector('.img-upload__form');
+const uploadFile = form.querySelector('#upload-file');
+const uploadOverlay = form.querySelector('.img-upload__overlay');
+const fieldsContainer = form.querySelector('.img-upload__text');
+const uploadCancel = form.querySelector('#upload-cancel');
+const textHashtags = fieldsContainer.querySelector('.text__hashtags');
+const textDescription = fieldsContainer.querySelector('.text__description');
+const regularExpression = /^#[\w]{1,19}$/;
 
+let onCloseModalEsc; // eslint-disable-line
+let onCloseModalClick; // eslint-disable-line
 
 /**
  * Добавляет/убирает классы для закрытия модального окна
  */
-const closeModal = () => {
+const onCloseModal = () => {
+  if (document.activeElement.parentElement === fieldsContainer) {
+    // прерывает выполнение функции
+    return;
+  }
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
 
   uploadFile.value = '';
   textHashtags.value = '';
   textDescription.value = '';
-};
 
-/**
- *
- * Вызывает по клику closeModal
- */
-const onCloseModalEsc = (evt) => {
-  if (document.activeElement !== textDescription && document.activeElement !== textHashtags) {
-    if (createOnEscKeyDown(evt)) {
-      evt.preventDefault();
-      closeModal();
-      body.removeEventListener('keydown', onCloseModalEsc);
-    }
-  }
+  uploadCancel.removeEventListener('click', onCloseModalClick);
+  body.removeEventListener('keydown', onCloseModalEsc);
+
+
 };
 
 /**
@@ -48,20 +48,12 @@ const openModal = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   body.addEventListener('keydown', onCloseModalEsc);
+  uploadCancel.addEventListener('click', onCloseModalClick);
 };
-
-
-uploadFile.addEventListener('change', openModal);
-
-
-/**
- * закрытие на крестик
- */
-uploadCancel.addEventListener('click', closeModal);
 
 /**
  *
- * Валидация хэштегов. Выводит окно с ошибкой.
+ * Валидация хештегов. Выводит окно с ошибкой.
  */
 const renderValidationMessages = () => {
 
@@ -86,9 +78,7 @@ const renderValidationMessages = () => {
     } else {
       textHashtags.setCustomValidity('');
     }
-
   }
-
   textHashtags.reportValidity();
 };
 
@@ -105,7 +95,18 @@ const checkComments = () => {
   textDescription.reportValidity();
 };
 
-textDescription.addEventListener('focus', checkComments);
-textDescription.addEventListener('blur', checkComments);
-textHashtags.addEventListener('focus', renderValidationMessages);
-textHashtags.removeEventListener('blur', renderValidationMessages);
+onCloseModalEsc = createOnEscKeyDown(onCloseModal);
+onCloseModalClick = createOnClickButton(onCloseModal);
+
+uploadFile.addEventListener('change', openModal);
+
+fieldsContainer.addEventListener('focus', () => {
+  textHashtags.addEventListener('input', renderValidationMessages);
+  textDescription.addEventListener('input', checkComments);
+}, true);
+
+
+fieldsContainer.addEventListener('blur', () => {
+  textHashtags.removeEventListener('input', renderValidationMessages);
+  textDescription.removeEventListener('input', checkComments);
+}, true);

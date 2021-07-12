@@ -11,6 +11,7 @@ import {
   IDS_COUNT,
   MAX_COMMENTS,
   MIN_COMMENTS,
+  MAX_COMMENTS_TO_SHOW,
   ErrorMessages
 } from './constants.js';
 
@@ -43,6 +44,7 @@ export {
   MAX_LIKES,
   AVATAR_COUNT,
   AUTHOR_NAMES,
+  MAX_COMMENTS_TO_SHOW,
   ErrorMessages,
   DESCRIPTIONS_PHOTO,
   DESCRIPTIONS_MESSAGE,
