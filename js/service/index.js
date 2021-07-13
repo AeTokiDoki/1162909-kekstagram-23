@@ -27,7 +27,10 @@ import {
   PHOBOS_STEP,
   HEAT_MIN_VALUE,
   HEAT_MAX_VALUE,
-  HEAT_STEP
+  HEAT_STEP,
+  SCALE_MIN_VALUE,
+  SCALE_MAX_VALUE,
+  SCALE_STEP
 } from './constants.js';
 
 import {
@@ -78,6 +81,9 @@ export {
   HEAT_MIN_VALUE,
   HEAT_MAX_VALUE,
   HEAT_STEP,
+  SCALE_MIN_VALUE,
+  SCALE_MAX_VALUE,
+  SCALE_STEP,
   getArrayNumbersFromId,
   getArrayFromFunctionCall,
   getArrayOfRandomNumbers,

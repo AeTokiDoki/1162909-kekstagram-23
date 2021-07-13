@@ -1,6 +1,8 @@
-const SCALE_MIN_VALUE = 25;
-const SCALE_MAX_VALUE = 100;
-const SCALE_STEP = 25;
+import {
+  SCALE_MIN_VALUE,
+  SCALE_MAX_VALUE,
+  SCALE_STEP
+} from './service/index.js';
 
 const scale = document.querySelector('.img-upload__preview-container');
 const minusButton = scale.querySelector('.scale__control--smaller');

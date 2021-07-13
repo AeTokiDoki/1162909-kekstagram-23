@@ -9,6 +9,10 @@ export const MIN_COMMENTS = 15;
 export const MAX_LENGTH_COMMENT = 140;
 export const MAX_COMMENTS_TO_SHOW = 5;
 
+export const SCALE_MIN_VALUE = 25;
+export const SCALE_MAX_VALUE = 100;
+export const SCALE_STEP = 25;
+
 export const CHROME_MIN_VALUE = 0;
 export const CHROME_MAX_VALUE = 1;
 export const CHROME_STEP = 0.1;
