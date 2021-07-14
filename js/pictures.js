@@ -1,15 +1,14 @@
-import {
-  createPhotoDescriptions
-} from './photo_descriptions.js';
 
 import {
   renderElement,
-  createNodesFragment
+  createNodesFragment,
+  getData,
+  sendData
 } from './service/index.js';
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-export const postsData = createPhotoDescriptions();
+export const postsData = getData();
 
 /**
  * Принимает объект, клонирует узел (pictureElement)
@@ -30,7 +29,7 @@ const createMiniature = ({ url, likes, comments, id }) => {
  *
  * @returns массив миниатюр вызовом функции createMiniature.
  */
-const createMiniatures = () => postsData.map(
+export const createMiniatures = () => postsData.map(
   (description) => createMiniature(description),
 );
 

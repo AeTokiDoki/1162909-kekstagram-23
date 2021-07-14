@@ -30,7 +30,8 @@ import {
   HEAT_STEP,
   SCALE_MIN_VALUE,
   SCALE_MAX_VALUE,
-  SCALE_STEP
+  SCALE_STEP,
+  ALERT_SHOW_TIME
 } from './constants.js';
 
 import {
@@ -42,7 +43,8 @@ import {
   getArrayFromFunctionCall,
   getArrayNumbersFromId,
   createNodesFragment,
-  renderStringNodes
+  renderStringNodes,
+  showAlert
 } from './utils.js';
 
 import {
@@ -50,6 +52,11 @@ import {
   toggleHidden,
   createOnClickButton
 } from './events-handlers.js';
+
+import {
+  getData,
+  sendData
+} from './api.js';
 
 export {
   MIN_ID,
@@ -84,6 +91,7 @@ export {
   SCALE_MIN_VALUE,
   SCALE_MAX_VALUE,
   SCALE_STEP,
+  ALERT_SHOW_TIME,
   getArrayNumbersFromId,
   getArrayFromFunctionCall,
   getArrayOfRandomNumbers,
@@ -95,5 +103,8 @@ export {
   createOnEscKeyDown,
   toggleHidden,
   createOnClickButton,
-  renderStringNodes
+  renderStringNodes,
+  showAlert,
+  getData,
+  sendData
 };

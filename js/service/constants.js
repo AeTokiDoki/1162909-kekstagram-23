@@ -33,6 +33,8 @@ export const HEAT_MIN_VALUE = 1;
 export const HEAT_MAX_VALUE = 3;
 export const HEAT_STEP = 0.1;
 
+export const ALERT_SHOW_TIME = 5000;
+
 export const AUTHOR_NAMES = [
   'Оскар',
   'Бен',
