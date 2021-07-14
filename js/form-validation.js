@@ -7,6 +7,10 @@ import {
   createOnClickButton
 } from './service/index.js';
 
+import {
+  sendData
+} from './api.js';
+
 const body = document.body;
 const form = body.querySelector('.img-upload__form');
 const uploadFile = form.querySelector('#upload-file');
@@ -18,6 +22,11 @@ const textDescription = fieldsContainer.querySelector('.text__description');
 const imagePreview = form.querySelector('.img-upload__preview');
 const sliderWrapper = form.querySelector('.img-upload__effect-level');
 const regularExpression = /^#[\w]{1,19}$/;
+
+const successPopup = document.querySelector('#success').content.querySelector('.success');
+const successButton = successPopup.querySelector('.success__button');
+const errorPopup = document.querySelector('#error').content.querySelector('.error');
+const errorButton = errorPopup.querySelector('.error__button');
 
 let onCloseModalEsc; // eslint-disable-line
 let onCloseModalClick; // eslint-disable-line
@@ -96,6 +105,53 @@ const checkComments = () => {
   }
   textDescription.reportValidity();
 };
+
+
+const removeEventListeners = (event) => {
+  document.removeEventListener('click', event);
+  document.removeEventListener('keydown', event);
+};
+
+const popupEventsHandler = (evt) => {
+  if (onCloseModalEsc(evt)) {
+    document.body.lastChild.remove();
+    removeEventListeners(popupEventsHandler);
+  } else if (evt.target === document.body.lastChild) {
+    document.body.lastChild.remove();
+    removeEventListeners(popupEventsHandler);
+  }
+};
+
+const popupClickHandler = () => {
+  document.body.lastChild.remove();
+  removeEventListeners(popupEventsHandler);
+};
+
+const popupOpenHandler = (template, button) => {
+  onCloseModal();
+  document.body.append(template);
+
+  document.removeEventListener('keydown', openModal);
+
+  button.addEventListener('click', popupClickHandler);
+  document.addEventListener('keydown', popupEventsHandler);
+  document.addEventListener('click', popupEventsHandler);
+};
+
+const setUserFormSubmit = () => {
+  body.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    sendData(
+      () => popupOpenHandler(successPopup, successButton),
+      () => popupOpenHandler(errorPopup, errorButton),
+      new FormData(evt.target),
+    );
+  });
+};
+
+setUserFormSubmit();
+
 
 onCloseModalEsc = createOnEscKeyDown(onCloseModal);
 onCloseModalClick = createOnClickButton(onCloseModal);

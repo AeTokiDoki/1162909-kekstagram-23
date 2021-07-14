@@ -1,8 +1,4 @@
 import {
-  postsData
-} from './pictures.js';
-
-import {
   createOnEscKeyDown,
   toggleHidden,
   createOnClickButton,
@@ -115,34 +111,36 @@ const createSocialComments = (comments) => comments.map((comment, index) => crea
 ));
 
 
-/**
- * Вызывает по клику модальное окно с постом.
- */
-const onPictureClick = (evt) => {
-  const target = evt.target;
+export const initBigPicture = (posts) => {
+  /**
+   * Вызывает по клику модальное окно с постом.
+   */
+  const onPictureClick = (evt) => {
+    const target = evt.target;
 
-  if (target.classList.contains('picture__img')) {
-    const post = postsData.find((data) => String(data.id) === target.dataset.id);
+    if (target.classList.contains('picture__img')) {
+      const post = posts.find((data) => String(data.id) === target.dataset.id);
 
-    evt.preventDefault();
+      evt.preventDefault();
 
-    fillModal(post);
-    renderStringNodes(
-      commentsContainer,
-      createSocialComments(post.comments).join(''),
-    );
+      fillModal(post);
+      renderStringNodes(
+        commentsContainer,
+        createSocialComments(post.comments).join(''),
+      );
 
-    onLoaderButtonClick = createOnLoaderButtonClick(
-      Array.from(commentsContainer.children),
-    );
+      onLoaderButtonClick = createOnLoaderButtonClick(
+        Array.from(commentsContainer.children),
+      );
 
-    openBigPictureModal();
-  }
+      openBigPictureModal();
+    }
+  };
+
+
+  pictures.addEventListener('click', onPictureClick);
+
+  // Объявления значений функций.
+  onEscKeyDown = createOnEscKeyDown(closeBigPictureModal);
+  onCloseButtonClick = createOnClickButton(closeBigPictureModal);
 };
-
-
-pictures.addEventListener('click', onPictureClick);
-
-// Объявления значений функций.
-onEscKeyDown = createOnEscKeyDown(closeBigPictureModal);
-onCloseButtonClick = createOnClickButton(closeBigPictureModal);

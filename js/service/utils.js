@@ -1,6 +1,6 @@
 import {
   ALERT_SHOW_TIME
-} from './service/index.js';
+} from './constants.js';
 
 /**
  * Принимает диапазон чисел.

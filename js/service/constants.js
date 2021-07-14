@@ -1,11 +1,3 @@
-export const MIN_LIKES = 15;
-export const MAX_LIKES = 200;
-export const AVATAR_COUNT = 6;
-export const MIN_ID = 1;
-export const MAX_ID = 25;
-export const IDS_COUNT = 25;
-export const MAX_COMMENTS = 15;
-export const MIN_COMMENTS = 15;
 export const MAX_LENGTH_COMMENT = 140;
 export const MAX_COMMENTS_TO_SHOW = 5;
 
@@ -33,34 +25,9 @@ export const HEAT_MIN_VALUE = 1;
 export const HEAT_MAX_VALUE = 3;
 export const HEAT_STEP = 0.1;
 
+export const ACADEMY_URL = 'https://23.javascript.pages.academy/kekstagram/data';
+
 export const ALERT_SHOW_TIME = 5000;
-
-export const AUTHOR_NAMES = [
-  'Оскар',
-  'Бен',
-  'Влад',
-  'Никита',
-  'Сергей',
-  'Андрей',
-];
-
-export const DESCRIPTIONS_PHOTO = [
-  'Сделал фото этим утром!',
-  'Зацени моего пса!',
-  'Фото на память.',
-  'Я и моя тачка',
-  'Это мы на море',
-  'Закат в Москве',
-];
-
-export const DESCRIPTIONS_MESSAGE = [
-  'Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
-];
 
 export const ErrorMessages = {
   HASHTAG_SUM: 'Нельзя указать больше 5 хэш-тегов',
