@@ -46,6 +46,14 @@ export const getArrayOfRandomNumbers = (min, max, length) => {
   return returnedArray;
 };
 
+export const getRandomArrayFromArray = (array, length) => {
+  const indexes = getArrayOfRandomNumbers(0, array.length - 1, length);
+  if (array.length < length) {
+    throw new Error('Длина переданного массива меньше ожидаемой длины возвращаемого массива');
+  }
+  return indexes.map((index) => array[index]);
+};
+
 /**
  * Принимает id и array
  * @returns  массив уникальных id, с учётом id базового элемента.

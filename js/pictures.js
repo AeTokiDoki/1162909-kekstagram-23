@@ -1,22 +1,6 @@
-
-import {
-  getData
-} from './api.js';
-
-import {
-  initBigPicture
-} from './big-picture.js';
-
-
-import {
-  initFilters
-} from './filters.js';
-
 import {
   renderElement,
-  createNodesFragment,
-  ACADEMY_URL,
-  showAlert
+  createNodesFragment
 } from './service/index.js';
 
 const pictures = document.querySelector('.pictures');

@@ -14,7 +14,7 @@ getData(
   (posts) => {
     renderMiniatures(posts);
     initBigPicture(posts);
-    initFilters();
+    initFilters(posts);
   },
   () => showAlert('Не удалось получить данные с сервера. Попробуйте ещё раз.'),
 );

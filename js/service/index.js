@@ -35,7 +35,8 @@ import {
   createNodesFragment,
   renderStringNodes,
   showAlert,
-  removeChildsFromRoot
+  removeChildsFromRoot,
+  getRandomArrayFromArray
 } from './utils.js';
 
 import {
@@ -81,5 +82,6 @@ export {
   createOnClickButton,
   renderStringNodes,
   showAlert,
-  removeChildsFromRoot
+  removeChildsFromRoot,
+  getRandomArrayFromArray
 };
