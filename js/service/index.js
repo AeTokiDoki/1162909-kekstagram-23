@@ -34,7 +34,8 @@ import {
   getArrayNumbersFromId,
   createNodesFragment,
   renderStringNodes,
-  showAlert
+  showAlert,
+  removeChildsFromRoot
 } from './utils.js';
 
 import {
@@ -79,5 +80,6 @@ export {
   toggleHidden,
   createOnClickButton,
   renderStringNodes,
-  showAlert
+  showAlert,
+  removeChildsFromRoot
 };

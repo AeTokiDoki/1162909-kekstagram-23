@@ -4,6 +4,9 @@ const defaultFilter = filters.querySelector('#filter-default');
 const randomFilter = filters.querySelector('#filter-random');
 const discussedFilter = filters.querySelector('#filter-discussed');
 
-const showFilters = () => {
+
+export const initFilters = () => {
   filters.classList.remove('img-filters--inactive');
+
+
 };

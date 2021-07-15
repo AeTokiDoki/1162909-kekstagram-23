@@ -124,3 +124,5 @@ export const showAlert = (message) => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 };
+
+export const removeChildsFromRoot = (root, childs) => childs.forEach((child) => root.removeChild(child));
