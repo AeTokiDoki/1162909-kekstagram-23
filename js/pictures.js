@@ -1,15 +1,22 @@
+
 import {
-  createPhotoDescriptions
-} from './photo_descriptions.js';
+  getData
+} from './api.js';
+
+import {
+  initBigPicture
+} from './big-picture.js';
 
 import {
   renderElement,
-  createNodesFragment
+  createNodesFragment,
+  ACADEMY_URL,
+  showAlert
 } from './service/index.js';
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-export const postsData = createPhotoDescriptions();
+// export const postsData = getData();
 
 /**
  * Принимает объект, клонирует узел (pictureElement)
@@ -30,13 +37,20 @@ const createMiniature = ({ url, likes, comments, id }) => {
  *
  * @returns массив миниатюр вызовом функции createMiniature.
  */
-const createMiniatures = () => postsData.map(
+export const createMiniatures = (data) => data.map(
   (description) => createMiniature(description),
 );
 
-renderElement(
-  pictures,
-  createNodesFragment(
-    createMiniatures(),
-  ),
+getData(
+  ACADEMY_URL,
+  (posts) => {
+    renderElement(
+      pictures,
+      createNodesFragment(
+        createMiniatures(posts),
+      ),
+    );
+    initBigPicture(posts);
+  },
+  showAlert('Не удалось получить данные с сервера. Попробуйте ещё раз.'),
 );

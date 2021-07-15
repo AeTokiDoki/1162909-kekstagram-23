@@ -1,16 +1,5 @@
 import {
-  MIN_LIKES,
-  MAX_LIKES,
-  AVATAR_COUNT,
-  AUTHOR_NAMES,
-  DESCRIPTIONS_PHOTO,
-  DESCRIPTIONS_MESSAGE,
   MAX_LENGTH_COMMENT,
-  MIN_ID,
-  MAX_ID,
-  IDS_COUNT,
-  MAX_COMMENTS,
-  MIN_COMMENTS,
   MAX_COMMENTS_TO_SHOW,
   ErrorMessages,
   CHROME_MIN_VALUE,
@@ -27,7 +16,12 @@ import {
   PHOBOS_STEP,
   HEAT_MIN_VALUE,
   HEAT_MAX_VALUE,
-  HEAT_STEP
+  HEAT_STEP,
+  SCALE_MIN_VALUE,
+  SCALE_MAX_VALUE,
+  SCALE_STEP,
+  ALERT_SHOW_TIME,
+  ACADEMY_URL
 } from './constants.js';
 
 import {
@@ -39,7 +33,8 @@ import {
   getArrayFromFunctionCall,
   getArrayNumbersFromId,
   createNodesFragment,
-  renderStringNodes
+  renderStringNodes,
+  showAlert
 } from './utils.js';
 
 import {
@@ -49,19 +44,8 @@ import {
 } from './events-handlers.js';
 
 export {
-  MIN_ID,
-  MAX_ID,
-  MAX_COMMENTS,
-  MIN_COMMENTS,
-  IDS_COUNT,
-  MIN_LIKES,
-  MAX_LIKES,
-  AVATAR_COUNT,
-  AUTHOR_NAMES,
   MAX_COMMENTS_TO_SHOW,
   ErrorMessages,
-  DESCRIPTIONS_PHOTO,
-  DESCRIPTIONS_MESSAGE,
   MAX_LENGTH_COMMENT,
   CHROME_MIN_VALUE,
   CHROME_MAX_VALUE,
@@ -78,6 +62,11 @@ export {
   HEAT_MIN_VALUE,
   HEAT_MAX_VALUE,
   HEAT_STEP,
+  SCALE_MIN_VALUE,
+  SCALE_MAX_VALUE,
+  SCALE_STEP,
+  ALERT_SHOW_TIME,
+  ACADEMY_URL,
   getArrayNumbersFromId,
   getArrayFromFunctionCall,
   getArrayOfRandomNumbers,
@@ -89,5 +78,6 @@ export {
   createOnEscKeyDown,
   toggleHidden,
   createOnClickButton,
-  renderStringNodes
+  renderStringNodes,
+  showAlert
 };
