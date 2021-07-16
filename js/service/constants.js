@@ -28,6 +28,8 @@ export const HEAT_STEP = 0.1;
 export const ACADEMY_URL = 'https://23.javascript.pages.academy/kekstagram/data';
 
 export const ALERT_SHOW_TIME = 5000;
+export const RENDER_DELAY = 500;
+export const RANDOM_POSTS = 10;
 
 export const ErrorMessages = {
   HASHTAG_SUM: 'Нельзя указать больше 5 хэш-тегов',
