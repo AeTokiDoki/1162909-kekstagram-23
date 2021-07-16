@@ -48,7 +48,7 @@ export const initFilters = (posts) => {
         renderPictures(discussedPost);
         break;
       case defaultFilter:
-        filterButtonsClickHandler(randomFilter, defaultFilter, discussedFilter);
+        filterButtonsClickHandler(randomFilter, discussedFilter, defaultFilter);
         renderPictures(posts);
         break;
     }
