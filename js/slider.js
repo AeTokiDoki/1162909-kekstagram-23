@@ -10,11 +10,11 @@ const sliderWrapper = scale.querySelector('.img-upload__effect-level');
 
 const effectsPhoto = document.querySelector('.img-upload__effects');
 const effectsList = document.querySelector('.effects__list');
-const chromeEffect = effectsPhoto.querySelector('#effect-chrome');
-const sepiaEffect = effectsPhoto.querySelector('#effect-sepia');
-const marvinEffect = effectsPhoto.querySelector('#effect-marvin');
-const phobosEffect = effectsPhoto.querySelector('#effect-phobos');
-const heatEffect = effectsPhoto.querySelector('#effect-heat');
+// const chromeEffect = effectsPhoto.querySelector('#effect-chrome');
+// const sepiaEffect = effectsPhoto.querySelector('#effect-sepia');
+// const marvinEffect = effectsPhoto.querySelector('#effect-marvin');
+// const phobosEffect = effectsPhoto.querySelector('#effect-phobos');
+// const heatEffect = effectsPhoto.querySelector('#effect-heat');
 
 
 //Создаёт слайдер с минимальным и максимальным значением, и шагом.
@@ -71,34 +71,63 @@ const createOnEffects = () => {
   const { chrome, sepia, marvin, phobos, heat } = effects;
 
   return (evt) => {
-    switch (evt.target) {
-      case chromeEffect:
-        showEffect(chrome.htmlClass, chrome.name, chrome.unit);
-        sliderOptionsHandler(chrome.min, heat.max, chrome.start, chrome.step);
-        break;
-      case sepiaEffect:
-        showEffect(sepia.htmlClass, sepia.name, sepia.unit);
-        sliderOptionsHandler(sepia.min, heat.max, sepia.start, sepia.step);
-        break;
-      case marvinEffect:
-        showEffect(marvin.htmlClass, marvin.name, marvin.unit);
-        sliderOptionsHandler(marvin.min, heat.max, marvin.start, marvin.step);
-        break;
-      case phobosEffect:
-        showEffect(phobos.htmlClass, phobos.name, phobos.unit);
-        sliderOptionsHandler(phobos.min, heat.max, phobos.start, phobos.step);
-        break;
-      case heatEffect:
-        showEffect(heat.htmlClass, heat.name, heat.unit);
-        sliderOptionsHandler(heat.min, heat.max, heat.start, heat.step);
-        break;
-      default:
+    switch (evt.target.id) {
+      case ('effect-none'):
         imagePreview.classList = 'img-upload__preview';
         sliderWrapper.classList.add('visually-hidden');
         imagePreview.style.filter = 'none';
+        break;
+      case ('effect-chrome'):
+        showEffect(chrome.htmlClass, chrome.name, chrome.unit);
+        sliderOptionsHandler(chrome.min, chrome.max, chrome.start, chrome.step);
+        break;
+      case ('effect-sepia'):
+        showEffect(sepia.htmlClass, sepia.name, sepia.unit);
+        sliderOptionsHandler(sepia.min, sepia.max, sepia.start, sepia.step);
+        break;
+      case ('effect-marvin'):
+        showEffect(marvin.htmlClass, marvin.name, marvin.unit);
+        sliderOptionsHandler(marvin.min, marvin.max, marvin.start, marvin.step);
+        break;
+      case ('effect-phobos'):
+        showEffect(phobos.htmlClass, phobos.name, phobos.unit);
+        sliderOptionsHandler(phobos.min, phobos.max, phobos.start, phobos.step);
+        break;
+      case ('effect-heat'):
+        showEffect(heat.htmlClass, heat.name, heat.unit);
+        sliderOptionsHandler(heat.min, heat.max, heat.start, heat.step);
+        break;
     }
   };
 };
+
+
+// switch (evt.target) {
+//   case chromeEffect:
+//     showEffect(chrome.htmlClass, chrome.name, chrome.unit);
+//     sliderOptionsHandler(chrome.min, heat.max, chrome.start, chrome.step);
+//     break;
+//   case sepiaEffect:
+//     showEffect(sepia.htmlClass, sepia.name, sepia.unit);
+//     sliderOptionsHandler(sepia.min, heat.max, sepia.start, sepia.step);
+//     break;
+//   case marvinEffect:
+//     showEffect(marvin.htmlClass, marvin.name, marvin.unit);
+//     sliderOptionsHandler(marvin.min, heat.max, marvin.start, marvin.step);
+//     break;
+//   case phobosEffect:
+//     showEffect(phobos.htmlClass, phobos.name, phobos.unit);
+//     sliderOptionsHandler(phobos.min, heat.max, phobos.start, phobos.step);
+//     break;
+//   case heatEffect:
+//     showEffect(heat.htmlClass, heat.name, heat.unit);
+//     sliderOptionsHandler(heat.min, heat.max, heat.start, heat.step);
+//     break;
+//   default:
+//     imagePreview.classList = 'img-upload__preview';
+//     sliderWrapper.classList.add('visually-hidden');
+//     imagePreview.style.filter = 'none';
+// }
 
 const onEffects = createOnEffects();
 
