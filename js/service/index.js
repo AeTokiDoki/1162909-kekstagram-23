@@ -22,8 +22,8 @@ import {
   SCALE_STEP,
   ALERT_SHOW_TIME,
   ACADEMY_URL,
-  RENDER_DELAY,
-  RANDOM_POSTS
+  RANDOM_POSTS,
+  SEND_DATA_URL
 } from './constants.js';
 
 import {
@@ -68,11 +68,11 @@ export {
   HEAT_STEP,
   SCALE_MIN_VALUE,
   SCALE_MAX_VALUE,
-  RENDER_DELAY,
   RANDOM_POSTS,
   SCALE_STEP,
   ALERT_SHOW_TIME,
   ACADEMY_URL,
+  SEND_DATA_URL,
   getArrayNumbersFromId,
   getArrayFromFunctionCall,
   getArrayOfRandomNumbers,

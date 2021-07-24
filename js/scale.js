@@ -9,6 +9,7 @@ const minusButton = scale.querySelector('.scale__control--smaller');
 const plusButton = scale.querySelector('.scale__control--bigger');
 const imagePreview = scale.querySelector('.img-upload__preview');
 const scaleValue = scale.querySelector('.scale__control--value');
+const uploadImagePreview = imagePreview.querySelector('img');
 
 let currentScale = 100;
 
@@ -17,14 +18,14 @@ let currentScale = 100;
  */
 const setImageScale = (newScale) => {
   scaleValue.value = `${newScale}%`;
-  imagePreview.style = `transform: scale(${newScale / 100})`;
+  uploadImagePreview.style = `transform: scale(${newScale / 100})`;
   currentScale = newScale;
 };
 
 /**
  * Уменьшает масштаб изображения с шагом в 25
  */
-const minusButtonClickHandler = () => {
+const onMinusButtonClick = () => {
   if (currentScale > SCALE_MIN_VALUE) {
     currentScale -= SCALE_STEP;
     setImageScale(currentScale);
@@ -34,12 +35,12 @@ const minusButtonClickHandler = () => {
 /**
  * Увеличивает масштаб изображения с шагом в 25
  */
-const plusButtonClickHandler = () => {
+const onPlusButtonClick = () => {
   if (currentScale < SCALE_MAX_VALUE) {
     currentScale += SCALE_STEP;
     setImageScale(currentScale);
   }
 };
 
-minusButton.addEventListener('click', minusButtonClickHandler);
-plusButton.addEventListener('click', plusButtonClickHandler);
+minusButton.addEventListener('click', onMinusButtonClick);
+plusButton.addEventListener('click', onPlusButtonClick);

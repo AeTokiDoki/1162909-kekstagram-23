@@ -21,7 +21,7 @@ const textHashtags = fieldsContainer.querySelector('.text__hashtags');
 const textDescription = fieldsContainer.querySelector('.text__description');
 const imagePreview = form.querySelector('.img-upload__preview');
 const sliderWrapper = form.querySelector('.img-upload__effect-level');
-const regularExpression = /^#[\w]{1,19}$/;
+const regularExpression = /^#[a-zA-Zа-яА-я0-9]{1,19}$/;
 
 const successPopup = document.querySelector('#success').content.querySelector('.success');
 const successButton = successPopup.querySelector('.success__button');
@@ -54,7 +54,7 @@ const onCloseModal = () => {
 /**
  * Открывает модальное окно
  */
-const openModal = () => {
+const onOpenModal = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   sliderWrapper.classList.add('visually-hidden');
@@ -66,7 +66,7 @@ const openModal = () => {
  *
  * Валидация хештегов. Выводит окно с ошибкой.
  */
-const renderValidationMessages = () => {
+const onRenderValidationMessages = () => {
 
   const hashtags = textHashtags.value.trim().split(' ').filter(Boolean);
 
@@ -97,7 +97,7 @@ const renderValidationMessages = () => {
 /**
  * проверка длинны комментария
  */
-const checkComments = () => {
+const onCheckComments = () => {
   if (checkStringLength(textDescription.value, MAX_LENGTH_COMMENT) === false) {
     textDescription.setCustomValidity((ErrorMessages.COMMENT_LENGTH));
   } else {
@@ -112,30 +112,30 @@ const removeEventListeners = (event) => {
   document.removeEventListener('keydown', event);
 };
 
-const popupEventsHandler = (evt) => {
+const onPopupEvents = (evt) => {
   if (onCloseModalEsc(evt)) {
     document.body.lastChild.remove();
-    removeEventListeners(popupEventsHandler);
+    removeEventListeners(onPopupEvents);
   } else if (evt.target === document.body.lastChild) {
     document.body.lastChild.remove();
-    removeEventListeners(popupEventsHandler);
+    removeEventListeners(onPopupEvents);
   }
 };
 
-const popupClickHandler = () => {
+const onPopupClick = () => {
   document.body.lastChild.remove();
-  removeEventListeners(popupEventsHandler);
+  removeEventListeners(onPopupEvents);
 };
 
 const popupOpenHandler = (template, button) => {
   onCloseModal();
   document.body.append(template);
 
-  document.removeEventListener('keydown', openModal);
+  document.removeEventListener('keydown', onOpenModal);
 
-  button.addEventListener('click', popupClickHandler);
-  document.addEventListener('keydown', popupEventsHandler);
-  document.addEventListener('click', popupEventsHandler);
+  button.addEventListener('click', onPopupClick);
+  document.addEventListener('keydown', onPopupEvents);
+  document.addEventListener('click', onPopupEvents);
 };
 
 const setUserFormSubmit = () => {
@@ -156,15 +156,15 @@ setUserFormSubmit();
 onCloseModalEsc = createOnEscKeyDown(onCloseModal);
 onCloseModalClick = createOnClickButton(onCloseModal);
 
-uploadFile.addEventListener('change', openModal);
+uploadFile.addEventListener('change', onOpenModal);
 
 fieldsContainer.addEventListener('focus', () => {
-  textHashtags.addEventListener('input', renderValidationMessages);
-  textDescription.addEventListener('input', checkComments);
+  textHashtags.addEventListener('input', onRenderValidationMessages);
+  textDescription.addEventListener('input', onCheckComments);
 }, true);
 
 
 fieldsContainer.addEventListener('blur', () => {
-  textHashtags.removeEventListener('input', renderValidationMessages);
-  textDescription.removeEventListener('input', checkComments);
+  textHashtags.removeEventListener('input', onRenderValidationMessages);
+  textDescription.removeEventListener('input', onCheckComments);
 }, true);

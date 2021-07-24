@@ -1,5 +1,5 @@
 import { renderMiniatures } from './pictures.js';
-import { RANDOM_POSTS, RENDER_DELAY } from './service/constants.js';
+import { RANDOM_POSTS } from './service/constants.js';
 import { debounce, getRandomArrayFromArray, removeChildsFromRoot } from './service/utils.js';
 
 const filterButtonsClickHandler = (classRemove, classRemoveSecond, classAdd) => {
@@ -29,7 +29,7 @@ export const initFilters = (posts) => {
       );
       renderMiniatures(data);
     },
-    RENDER_DELAY,
+    500,
   ));
 
   const onFiltersClick = (evt) => {

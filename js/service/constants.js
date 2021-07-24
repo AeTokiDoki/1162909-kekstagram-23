@@ -26,9 +26,9 @@ export const HEAT_MAX_VALUE = 3;
 export const HEAT_STEP = 0.1;
 
 export const ACADEMY_URL = 'https://23.javascript.pages.academy/kekstagram/data';
+export const SEND_DATA_URL = 'https://23.javascript.pages.academy/kekstagram';
 
 export const ALERT_SHOW_TIME = 5000;
-export const RENDER_DELAY = 500;
 export const RANDOM_POSTS = 10;
 
 export const ErrorMessages = {

@@ -129,7 +129,7 @@ const sliderOptionsHandler = (minValue, maxValue, startValue, stepValue) => {
   });
 };
 
-const effectsHandler = () => {
+const onEffects = () => {
   if (noEffectRadio.checked) {
     imagePreview.classList = 'img-upload__preview';
     sliderWrapper.classList.add('visually-hidden');
@@ -152,9 +152,9 @@ const effectsHandler = () => {
   }
 };
 
-noEffectRadio.addEventListener('click', effectsHandler);
-chromeEffectRadio.addEventListener('click', effectsHandler);
-sepiaEffectRadio.addEventListener('click', effectsHandler);
-marvinEffectRadio.addEventListener('click', effectsHandler);
-phobosEffectRadio.addEventListener('click', effectsHandler);
-heatEffectRadio.addEventListener('click', effectsHandler);
+noEffectRadio.addEventListener('click', onEffects);
+chromeEffectRadio.addEventListener('click', onEffects);
+sepiaEffectRadio.addEventListener('click', onEffects);
+marvinEffectRadio.addEventListener('click', onEffects);
+phobosEffectRadio.addEventListener('click', onEffects);
+heatEffectRadio.addEventListener('click', onEffects);

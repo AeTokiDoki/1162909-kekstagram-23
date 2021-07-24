@@ -1,3 +1,4 @@
+import { SEND_DATA_URL } from './service/index.js';
 
 export const getData = (url, onSuccess, onError) =>
   fetch(url)
@@ -10,7 +11,7 @@ export const getData = (url, onSuccess, onError) =>
     });
 
 export const sendData = (onSuccess, onError, body) =>
-  fetch('https://23.javascript.pages.academy/kekstagram',
+  fetch(SEND_DATA_URL,
     {
       method: 'POST',
       body,
