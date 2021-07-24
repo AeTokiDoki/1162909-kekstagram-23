@@ -45,7 +45,7 @@ const createOnLoaderButtonClick = (comments) => {
     commentsToRender = commentsToRender.splice(MAX_COMMENTS_TO_SHOW);
 
     if (currentCommentsCount === comments.length) {
-      toggleHidden(loaderButton);
+      loaderButton.classList.add('hidden');
     }
   };
 };
@@ -57,7 +57,7 @@ const closeBigPictureModal = () => {
   toggleHidden(bigPictureModal);
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeyDown);
-  toggleHidden(loaderButton);
+  loaderButton.classList.remove('hidden');
 
   bigPictureCancelButton.removeEventListener('click', onCloseButtonClick);
   loaderButton.removeEventListener('click', onLoaderButtonClick);

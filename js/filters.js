@@ -29,7 +29,6 @@ export const initFilters = (posts) => {
       );
       renderMiniatures(data);
     },
-    500,
   ));
 
   const onFiltersClick = (evt) => {

@@ -1,7 +1,8 @@
 import {
   SCALE_MIN_VALUE,
   SCALE_MAX_VALUE,
-  SCALE_STEP
+  SCALE_STEP,
+  MAX_RESIZE
 } from './service/index.js';
 
 const scale = document.querySelector('.img-upload__preview-container');
@@ -11,12 +12,12 @@ const imagePreview = scale.querySelector('.img-upload__preview');
 const scaleValue = scale.querySelector('.scale__control--value');
 const uploadImagePreview = imagePreview.querySelector('img');
 
-let currentScale = 100;
+let currentScale = MAX_RESIZE;
 
 /**
  * Устанавливает масштаб изображения по умолчанию
  */
-const setImageScale = (newScale) => {
+export const setImageScale = (newScale) => {
   scaleValue.value = `${newScale}%`;
   uploadImagePreview.style = `transform: scale(${newScale / 100})`;
   currentScale = newScale;

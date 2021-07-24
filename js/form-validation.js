@@ -4,12 +4,17 @@ import {
   checkStringLength,
   createOnEscKeyDown,
   ErrorMessages,
-  createOnClickButton
+  createOnClickButton,
+  MAX_RESIZE
 } from './service/index.js';
 
 import {
   sendData
 } from './api.js';
+
+import {
+  setImageScale
+} from './scale.js';
 
 const body = document.body;
 const form = body.querySelector('.img-upload__form');
@@ -27,9 +32,11 @@ const successPopup = document.querySelector('#success').content.querySelector('.
 const successButton = successPopup.querySelector('.success__button');
 const errorPopup = document.querySelector('#error').content.querySelector('.error');
 const errorButton = errorPopup.querySelector('.error__button');
+const noneEffect = form.querySelector('#effect-none');
 
 let onCloseModalEsc; // eslint-disable-line
 let onCloseModalClick; // eslint-disable-line
+let onCloseSuccessMessEsc; // eslint-disable-line
 
 /**
  * Добавляет/убирает классы для закрытия модального окна
@@ -46,6 +53,9 @@ const onCloseModal = () => {
   textHashtags.value = '';
   textDescription.value = '';
   imagePreview.style.filter = 'none';
+  textHashtags.setCustomValidity('');
+  setImageScale(MAX_RESIZE);
+  noneEffect.checked = true;
 
   uploadCancel.removeEventListener('click', onCloseModalClick);
   body.removeEventListener('keydown', onCloseModalEsc);
@@ -132,7 +142,7 @@ const popupOpenHandler = (template, button) => {
   document.body.append(template);
 
   document.removeEventListener('keydown', onOpenModal);
-
+  document.addEventListener('keydown', onCloseSuccessMessEsc);
   button.addEventListener('click', onPopupClick);
   document.addEventListener('keydown', onPopupEvents);
   document.addEventListener('click', onPopupEvents);
@@ -141,7 +151,6 @@ const popupOpenHandler = (template, button) => {
 const setUserFormSubmit = () => {
   body.addEventListener('submit', (evt) => {
     evt.preventDefault();
-
     sendData(
       () => popupOpenHandler(successPopup, successButton),
       () => popupOpenHandler(errorPopup, errorButton),
@@ -153,6 +162,7 @@ const setUserFormSubmit = () => {
 setUserFormSubmit();
 
 
+onCloseSuccessMessEsc = createOnEscKeyDown(onPopupClick);
 onCloseModalEsc = createOnEscKeyDown(onCloseModal);
 onCloseModalClick = createOnClickButton(onCloseModal);
 
